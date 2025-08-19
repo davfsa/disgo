@@ -159,6 +159,7 @@ func (m *shardManagerImpl) Open(ctx context.Context) {
 				opts = append(opts, gateway.WithSequence(shardState.Sequence))
 			}
 			if shardState.ResumeURL != "" {
+				m.config.Logger.Warn("hello, i was called")
 				opts = append(opts, gateway.WithResumeURL(shardState.ResumeURL))
 			}
 
