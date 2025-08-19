@@ -20,7 +20,8 @@ type ShardState struct {
 	// SessionID is the session ID of the shard. This is used to resume the shard.
 	SessionID string
 	// Sequence is the sequence number of the shard. This is used to resume the shard.
-	Sequence int
+	Sequence  int
+	ResumeURL string
 }
 
 type config struct {
