@@ -736,7 +736,7 @@ func (g *gatewayImpl) parseMessage(mt int, r io.Reader) (Message, error) {
 		r = reader
 	}
 
-	if g.config.Logger.Enabled(context.Background(), slog.LevelDebug) {
+	if g.config.Logger.Enabled(context.Background(), slog.LevelDebug) && false {
 		buff := new(bytes.Buffer)
 		tr := io.TeeReader(r, buff)
 		data, err := io.ReadAll(tr)
