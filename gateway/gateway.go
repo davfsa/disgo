@@ -368,7 +368,9 @@ func (g *gatewayImpl) send(ctx context.Context, messageType int, data []byte) er
 	}
 
 	defer g.config.RateLimiter.Unlock()
-	g.config.Logger.DebugContext(ctx, "sending gateway command", slog.String("data", string(data)))
+	if false {
+		g.config.Logger.DebugContext(ctx, "sending gateway command", slog.String("data", string(data)))
+	}
 	return g.conn.WriteMessage(messageType, data)
 }
 
