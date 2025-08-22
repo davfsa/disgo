@@ -478,6 +478,7 @@ func (g *gatewayImpl) sendHeartbeat() {
 	ctx, cancel := context.WithTimeout(context.Background(), g.heartbeatInterval)
 	defer cancel()
 	if err := g.sendInternal(ctx, OpcodeHeartbeat, MessageDataHeartbeat(sequence)); err != nil {
+		g.config.Logger.Warn("failed to send heartbeat", slog.Any("err", err))
 		if errors.Is(err, discord.ErrShardNotConnected) || errors.Is(err, syscall.EPIPE) {
 			return
 		}
