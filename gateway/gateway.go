@@ -459,7 +459,7 @@ func (g *gatewayImpl) heartbeat() {
 
 		case <-heartbeatTicker.C:
 			if g.lastHeartbeatReceived.Before(g.lastHeartbeatSent) {
-				lastHeartbeatAgo := time.Now().Sub(g.lastHeartbeatReceived)
+				lastHeartbeatAgo := time.Since(g.lastHeartbeatReceived)
 				g.config.Logger.Warn("ACK of last heartbeat not received, connection went zombie", slog.Duration("last_heartbeat_ago", lastHeartbeatAgo))
 				closeCtx, closeCancel := context.WithTimeout(context.Background(), 5*time.Second)
 				g.CloseWithCode(closeCtx, websocket.CloseServiceRestart, "heartbeat ACK not received")
